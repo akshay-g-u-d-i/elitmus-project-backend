@@ -1,4 +1,5 @@
 require('dotenv').config()
+const frontendlink = process.env.BASE_URL
 const express = require('express')
 const { mongodb }  = require('./database')
 const app = express()
@@ -14,7 +15,7 @@ const getregdata = require('./routes/getregdata')
 mongodb()
 
 app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", frontendlink);
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
