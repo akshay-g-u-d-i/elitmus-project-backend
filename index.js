@@ -1,5 +1,5 @@
 require('dotenv').config()
-const frontendlink = process.env.BASE_URL
+var cors = require('cors')
 const express = require('express')
 const { mongodb }  = require('./database')
 const app = express()
@@ -14,14 +14,7 @@ const getregdata = require('./routes/getregdata')
 
 mongodb()
 
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin", frontendlink);
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-})
+app.use(cors())
 
 app.use(express.json())
 
