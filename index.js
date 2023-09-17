@@ -9,22 +9,15 @@ const loginuser = require('./routes/loginuser')
 const submitanswers = require('./routes/submitanswers')
 const getdata = require('./routes/getdata')
 const getregdata = require('./routes/getregdata')
+const loginuserwithgoogle = require('./routes/loginuserwithgoogle')
 
 
 
 mongodb()
 
 app.use(cors())
-
 app.use(express.json())
 
-app.get('/', (req, res)=>{
-    res.send("Hello front-end, this is back-end")
-})
-
-app.listen(port, ()=>{
-    console.log(`Listening on port: ${port}`)
-})
 
 
 app.use('/api/createuser', createuser)
@@ -32,6 +25,11 @@ app.use('/api/loginuser', loginuser)
 app.use('/api/submitanswers', submitanswers)
 app.use('/api/getdata', getdata)
 app.use('/api/getregdata', getregdata)
+app.use('/api/loginuserwithgoogle',loginuserwithgoogle)
+
+app.listen(port, ()=>{
+    console.log(`Listening on port: ${port}`)
+})
 
 
 

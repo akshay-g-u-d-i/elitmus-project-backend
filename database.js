@@ -11,7 +11,7 @@ const mongodb = () => {
             console.log("Mongodb connected")
         })
         .catch((err) => {
-            console.log("Error occured")
+            console.log(err)
         })
 }
 
@@ -22,16 +22,17 @@ const mongodb = () => {
 const userschema = new Schema({
     name : {
         type : String,
-        required: true
     },
     email: {
         type: String,
         required: true,
         unique: true
     },
+    picture: {
+        type: String,
+    },
     password: {
         type: String,
-        required: true
     },
     role: {
         type: String,

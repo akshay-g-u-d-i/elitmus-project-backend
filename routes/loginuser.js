@@ -18,32 +18,33 @@ router.post('/',
             let userdata = await usermodel.findOne({ email });
 
             if (!userdata) {
-                res.send({ success: false, email: false });
+                return res.send({ success: false, email: false });
             }
 
             const isMatch = await bcrypt.compare(password, userdata.password);
 
             if (!isMatch) {
-                res.send({ success: false, email: true });
+                return res.send({ success: false, email: true });
             }
             else {
 
-                const data = {
-                    user: {
-                        id: userdata.id,
-                    }
-                }
+                // const data = {
+                //     user: {
+                //         id: userdata.id,
+                //     }
+                // }
 
-                const authTkn = jwt.sign(data, jwtSecret)
+                const authTkn = jwt.sign("randomuser", jwtSecret)
                 
 
-                res.send({ success: true, authTkn: authTkn, userdata: userdata })
+                return res.send({ success: true, authTkn: authTkn, userdata: userdata })
             }
 
         }
 
         catch (err) {
             console.log("Error in finding email");
+            return res.send({success: false});
         }
     }
 
